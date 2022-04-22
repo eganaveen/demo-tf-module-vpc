@@ -4,6 +4,6 @@ resource "aws_subnet" "tfvpc-subnet1" {
   availability_zone = element(var.AZ, count.index )
   vpc_id     = aws_vpc.tfvpc.id
   tags = {
-    Name = "${var.ENV}"-aws_subnet.tfvpc-subnet1.availability_zone
+    Name = "${var.ENV}"-"${element(var.AZ,count.index )}"
   }
 }
