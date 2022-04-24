@@ -2,10 +2,13 @@ data "aws_route_table" "default-route-table" {
   vpc_id = var.DEFAULT_VPC_ID
 }
 
-data "aws_internet_gateway" "igw" {
-  tags = {Name = "igw"}
-}
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.tfvpc.id
 
+  tags = {
+    Name = "${var.ENV}-igw"
+  }
+}
   #resource "aws_default_route_table" "system-default-route-table-id" {
   #  default_route_table_id = data.aws_route_table.default-route-table.route_table_id
   #}
