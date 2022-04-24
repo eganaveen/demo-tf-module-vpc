@@ -38,5 +38,6 @@ resource "aws_route" "route-to-default-vpc-rt1" {
 resource "aws_route" "route-to-default-vpc-rt2" {
   route_table_id = aws_default_route_table.dev-default-route-table-id.default_route_table_id
   destination_cidr_block = "0.0.0.0/0"
-  local_gateway_id = aws_internet_gateway.igw.id
+#  local_gateway_id = aws_internet_gateway.igw.id
+  gateway_id = aws_internet_gateway.igw.id
 }
