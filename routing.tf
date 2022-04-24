@@ -3,7 +3,7 @@ data "aws_route_table" "default-route-table" {
 }
 
 data "aws_internet_gateway" "igw" {
-  tags = {Name: igw}
+  tags = {Name = "igw"}
 }
 
   #resource "aws_default_route_table" "system-default-route-table-id" {
