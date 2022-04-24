@@ -2,6 +2,10 @@ data "aws_route_table" "default-route-table" {
   vpc_id = var.DEFAULT_VPC_ID
 }
 
+data "aws_internet_gateway" "igw" {
+  vpc_id = var.DEFAULT_VPC_ID
+}
+
   #resource "aws_default_route_table" "system-default-route-table-id" {
   #  default_route_table_id = data.aws_route_table.default-route-table.route_table_id
   #}
@@ -31,5 +35,5 @@ resource "aws_route" "route-to-default-vpc-rt1" {
 resource "aws_route" "route-to-default-vpc-rt2" {
   route_table_id = aws_default_route_table.dev-default-route-table-id.default_route_table_id
   destination_cidr_block = "0.0.0.0/0"
-  vpc_peering_connection_id = aws_vpc_peering_connection.peering-connection.id
+  local_gateway_id = aws_internet_gateway.igw.id
 }
