@@ -7,5 +7,5 @@ resource "aws_vpc" "tfvpc" {
 }
 
 output "dev-vpc-route-id" {
-  value = aws_vpc.tfvpc
+  value = aws_vpc.tfvpc.id
 }
