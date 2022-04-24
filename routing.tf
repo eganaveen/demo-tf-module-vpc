@@ -1,5 +1,10 @@
+
+resource "aws_default_route_table" "dev-default-route-table-id" {
+  default_route_table_id = aws_vpc.tfvpc.id
+}
+
 resource "aws_route_table_association" "rt-association" {
-  route_table_id = var.DEV_ROUTE_TABLE_ID
+  route_table_id = aws_default_route_table.dev-default-route-table-id.id
   count = length(aws_subnet.tfvpc-subnet1.*.id)
   subnet_id = element(aws_subnet.tfvpc-subnet1.*.id, count.index )
 }
