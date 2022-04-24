@@ -22,14 +22,14 @@ resource "aws_route" "route-to-dev-vpc-rt" {
   vpc_peering_connection_id = aws_vpc_peering_connection.peering-connection.id
 }
 
-resource "aws_route" "route-to-default-vpc-rt" {
+resource "aws_route" "route-to-default-vpc-rt1" {
   route_table_id = aws_default_route_table.dev-default-route-table-id.default_route_table_id
-  destination_cidr_block = [var.DEFAULT_VPC_CIDR, "0.0.0.0/0"]
+  destination_cidr_block = var.DEFAULT_VPC_CIDR
   vpc_peering_connection_id = aws_vpc_peering_connection.peering-connection.id
 }
 
-#resource "aws_route" "route-to-default-vpc-rt" {
-#  route_table_id = aws_default_route_table.dev-default-route-table-id.default_route_table_id
-#  destination_cidr_block = "0.0.0.0/0"
-#  vpc_peering_connection_id = aws_vpc_peering_connection.peering-connection.id
-#}
+resource "aws_route" "route-to-default-vpc-rt2" {
+  route_table_id = aws_default_route_table.dev-default-route-table-id.default_route_table_id
+  destination_cidr_block = "0.0.0.0/0"
+  vpc_peering_connection_id = aws_vpc_peering_connection.peering-connection.id
+}
