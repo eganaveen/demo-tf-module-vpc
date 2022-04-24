@@ -3,6 +3,10 @@ resource "aws_default_route_table" "dev-default-route-table-id" {
   default_route_table_id = aws_vpc.tfvpc.id
 }
 
+output "deault-dev-route-id" {
+  value = aws_default_route_table.dev-default-route-table-id.id
+}
+
 resource "aws_route_table_association" "rt-association" {
   route_table_id = aws_default_route_table.dev-default-route-table-id.id
   count = length(aws_subnet.tfvpc-subnet1.*.id)
@@ -16,7 +20,7 @@ resource "aws_route" "route-to-dev-vpc-rt" {
 }
 
 resource "aws_route" "route-to-default-vpc-rt" {
-  route_table_id = aws_route_table_association.rt-association.route_table_id
+  route_table_id = aws_default_route_table.dev-default-route-table-id.id
   destination_cidr_block = var.DEFAULT_VPC_CIDR
   vpc_peering_connection_id = aws_vpc_peering_connection.peering-connection.id
 }
