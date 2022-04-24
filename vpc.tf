@@ -5,3 +5,7 @@ resource "aws_vpc" "tfvpc" {
     Name= "${var.ENV}-vpc"
   }
 }
+
+output "dev-vpc-route-id" {
+  value = aws_vpc.tfvpc
+}

@@ -1,11 +1,9 @@
 
 resource "aws_default_route_table" "dev-default-route-table-id" {
-  default_route_table_id = aws_vpc.tfvpc.id
+  default_route_table_id = aws_vpc.
 }
 
-output "deault-dev-route-id" {
-  value = aws_default_route_table.dev-default-route-table-id.id
-}
+
 
 resource "aws_route_table_association" "rt-association" {
   route_table_id = aws_default_route_table.dev-default-route-table-id.id
