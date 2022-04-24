@@ -3,7 +3,7 @@ data "aws_route_table" "default-route-table" {
 }
 
 resource "aws_default_route_table" "system-default-route-table-id" {
-  default_route_table_id = data.aws_route_table.default-route-table.routes
+  default_route_table_id = data.aws_route_table.default-route-table.route_table_id
 }
 
 resource "aws_default_route_table" "dev-default-route-table-id" {
