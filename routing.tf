@@ -16,7 +16,7 @@ resource "aws_route" "route-to-dev-vpc-rt" {
 }
 
 resource "aws_route" "route-to-default-vpc-rt" {
-  route_table_id = var.DEV_ROUTE_TABLE_ID
+  route_table_id = aws_route_table_association.rt-association.route_table_id
   destination_cidr_block = var.DEFAULT_VPC_CIDR
   vpc_peering_connection_id = aws_vpc_peering_connection.peering-connection.id
 }
