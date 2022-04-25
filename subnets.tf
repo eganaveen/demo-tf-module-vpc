@@ -4,7 +4,7 @@ resource "aws_subnet" "public-subnet" {
   availability_zone = var.AZ[0]   //["us-east-1a","us-east-1b"]
   vpc_id     = aws_vpc.tfvpc.id
   tags = {
-    Name = "${var.ENV}-${var.AZ[0]}"
+    Name = "${var.ENV}-public-${var.AZ[0]}"
   }
 }
 
@@ -14,6 +14,6 @@ resource "aws_subnet" "private-subnet" {
   availability_zone = var.AZ[1]   //["us-east-1a","us-east-1b"]
   vpc_id     = aws_vpc.tfvpc.id
   tags = {
-    Name = "${var.ENV}-${var.AZ[1]}"
+    Name = "${var.ENV}-private-${var.AZ[1]}"
   }
 }
