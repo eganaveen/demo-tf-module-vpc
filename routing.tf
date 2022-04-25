@@ -2,17 +2,21 @@ data "aws_route_table" "default-route-table" {
   vpc_id = var.DEFAULT_VPC_ID
 }
 
-resource "aws_default_route_table" "dev-default-route-table-id" {
+resource "aws_route_table" "dev-private_route_table" {
+  vpc_id = aws_vpc.tfvpc.id
+}
+
+resource "aws_default_route_table" "dev-public-route-table-id" {
   default_route_table_id = aws_vpc.tfvpc.main_route_table_id
 }
 
 resource "aws_route_table_association" "public-rt-association" {
-  route_table_id = aws_default_route_table.dev-default-route-table-id.default_route_table_id
+  route_table_id = aws_default_route_table.dev-public-route-table-id.default_route_table_id
   subnet_id = aws_subnet.public-subnet.id
 }
 
 resource "aws_route_table_association" "private-rt-association" {
-  route_table_id = aws_default_route_table.dev-default-route-table-id.default_route_table_id
+  route_table_id = aws_route_table.dev-private_route_table.id
   subnet_id = aws_subnet.private-subnet.id
 }
 
