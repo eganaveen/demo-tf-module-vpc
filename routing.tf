@@ -34,7 +34,7 @@ resource "aws_route" "route-to-dev-vpc-rt" {
 
 resource "aws_route" "igw-gateway-route-to-dev-vpc-rt" {
   route_table_id = aws_default_route_table.dev-public-route-table-id.id
-  destination_cidr_block = var.DEFAULT_VPC_CIDR
+  destination_cidr_block = "0.0.0.0/0"
   gateway_id = aws_internet_gateway.igw.id
 }
 
