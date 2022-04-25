@@ -12,7 +12,7 @@ resource "aws_nat_gateway" "ngw" {
   allocation_id = aws_eip.eip.id
 
   tags = {
-    Name = "NAT GW"
+    Name = "${var.ENV}-ngw"
   }
   depends_on = [aws_internet_gateway.igw]
 }
