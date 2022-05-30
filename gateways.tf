@@ -4,13 +4,10 @@ resource "aws_internet_gateway" "igw" {
     Name = "${var.ENV}-igw"
   }
 }
-
 resource "aws_eip" "eip" {}
-
 resource "aws_nat_gateway" "ngw" {
   subnet_id = aws_subnet.public-subnet.id
   allocation_id = aws_eip.eip.id
-
   tags = {
     Name = "${var.ENV}-ngw"
   }
